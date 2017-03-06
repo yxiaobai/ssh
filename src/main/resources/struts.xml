@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.configuration.xml.reload" value="true"/>
+    <!--国际化配置-->
+    <constant name="struts.custom.i18n.resources" value="res"/>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <constant name="struts.i18n.reload" value="true"/>
+    <constant name="struts.ui.theme" value="simple"/>
+
+    <constant name="struts.objectFactory" value="spring" />
+
+    <constant name="struts.action.extension" value="action,,do"/>
+    <constant name="struts.action.excludePattern" value="/myservlet.action,/tag.jsp"/>
+    <package name="reg" extends="struts-default" namespace="/">
+        <action name="show" class="bookaction" method="execute">
+        <result name="success">/show.jsp</result>
+    </action>
+
+        <action name="del" class="bookaction" method="del">
+            <result name="success" type="redirectAction">
+                <param name="actionName">show</param>
+                <param name="namespace">/</param>
+            </result>
+        </action>
+
+    </package>
+</struts>
